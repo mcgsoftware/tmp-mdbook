@@ -1,0 +1,6 @@
+[book]
+authors = ["McG"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Go Notebook"
