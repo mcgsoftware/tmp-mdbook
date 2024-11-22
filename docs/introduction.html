@@ -155,6 +155,42 @@
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>This is a book on Go notes.</p>
 <img src="./images/golang-gopher.svg" alt="Alt Text" width="500" height="200">
+<h1 id="making-the-mdbook-a-ghpages"><a class="header" href="#making-the-mdbook-a-ghpages">Making the mdbook a ghpages</a></h1>
+<h2 id="1-stop-the-mdbook-server-if-its-running"><a class="header" href="#1-stop-the-mdbook-server-if-its-running">1. stop the mdbook server if its running.</a></h2>
+<h2 id="2-comfigure-mdbook-target-directory"><a class="header" href="#2-comfigure-mdbook-target-directory">2. Comfigure mdBook target directory</a></h2>
+<p>To configure mdBook to use /docs as the target directory instead of the default /book, follow these steps:</p>
+<p>Step A: Modify the book.toml Configuration File</p>
+<p>The book.toml file is used to configure your mdBook project. You need to update it to set /docs as the build directory.</p>
+<ul>
+<li>
+<p>Open the book.toml file in the root of your mdBook project.</p>
+</li>
+<li>
+<p>Add or modify the [build] section to specify the output directory:</p>
+</li>
+</ul>
+<pre><code>[build]
+build-dir = "docs"
+</code></pre>
+<p>Step B: Rebuild the Book</p>
+<p>Run the mdbook build command to regenerate the book, now targeting the /docs directory:</p>
+<pre><code>mdbook build
+</code></pre>
+<p>This will create the static files in the docs/ directory.</p>
+<p>Step 3: Verify the Change</p>
+<p>Check the docs/ directory to ensure the built book is there.</p>
+<p>Step 4: Push to GitHub (if hosting via GitHub Pages)</p>
+<pre><code>1.	Commit and push the changes to your repository:
+</code></pre>
+<p>git add .
+git commit -m "Update mdBook to use docs as target directory"
+git push</p>
+<pre><code>2.	If you’re hosting on GitHub Pages:
+•	Make sure GitHub Pages is set to serve the /docs folder as described in the previous steps.
+</code></pre>
+<p>Notes:</p>
+<pre><code>•	Changing the build-dir to /docs is helpful when using GitHub Pages, as it avoids manually moving the contents of the /book directory.
+•	Every time you build the book, mdBook will now output the files directly to /docs.</code></pre>
 
                     </main>
 
@@ -179,22 +215,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
